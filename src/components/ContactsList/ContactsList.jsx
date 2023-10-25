@@ -20,10 +20,9 @@ export const ContactsList = () => {
 
 	const getContacts = () => {
 		const normalizedFilter = filter.toLowerCase();
-		return console.log(contacts),
-			contacts.filter(contact =>
-				contact.name.toLowerCase().includes(normalizedFilter)
-			);
+		return contacts.filter(contact =>
+			contact.name.toLowerCase().includes(normalizedFilter)
+		);
 	};
 
 	const filterContacts = getContacts();
