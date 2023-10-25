@@ -3,9 +3,10 @@ import { Overlay, ModalWindow, ModalTitle } from './ModalStyle'
 import { ConteinerContactsButton } from 'components/ContactsForm/CotactsFormStyle';
 import { useDispatch, useSelector } from 'react-redux';
 import { setModal, setModalData } from 'redax/contactsReduser';
+import { modalDataSelector } from 'redax/selector';
 
 export function Modal() {
-	const modalData = useSelector((state) => state.contacts.modalData);
+	const modalData = useSelector(modalDataSelector);
 	const dispatch = useDispatch();
 
 	const onCloseModal = () => {

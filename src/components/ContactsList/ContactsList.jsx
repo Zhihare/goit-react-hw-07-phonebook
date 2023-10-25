@@ -3,11 +3,12 @@ import { RiDeleteBin6Line } from 'react-icons/ri';
 import { ContactsListButton, ContactsListContainer, ContactsListName } from './ContactsListStyle';
 import { useDispatch, useSelector } from "react-redux";
 import { setModalDelete, setModalDeleteData } from 'redax/contactsReduser';
+import { contactsSelector, filterSelector } from 'redax/selector';
 
 export const ContactsList = () => {
 
-	const contacts = useSelector((state) => state.contacts.contacts);
-	const filter = useSelector((state) => state.contacts.filter);
+	const contacts = useSelector(contactsSelector);
+	const filter = useSelector(filterSelector);
 
 	const dispatch = useDispatch();
 
@@ -19,9 +20,10 @@ export const ContactsList = () => {
 
 	const getContacts = () => {
 		const normalizedFilter = filter.toLowerCase();
-		return contacts.filter(contact =>
-			contact.name.toLowerCase().includes(normalizedFilter)
-		);
+		return console.log(contacts),
+			contacts.filter(contact =>
+				contact.name.toLowerCase().includes(normalizedFilter)
+			);
 	};
 
 	const filterContacts = getContacts();
@@ -32,7 +34,7 @@ export const ContactsList = () => {
 				return (
 					<ContactsListName key={id}>
 						<p>{name}: {number}</p>
-						<ContactsListButton onClick={() => onOpenModalDelete(name)}><RiDeleteBin6Line /> </ContactsListButton>
+						<ContactsListButton onClick={() => onOpenModalDelete(id)}><RiDeleteBin6Line /> </ContactsListButton>
 					</ContactsListName>
 				);
 			})

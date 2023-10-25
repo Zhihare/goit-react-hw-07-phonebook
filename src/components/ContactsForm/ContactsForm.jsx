@@ -1,11 +1,13 @@
 import React, { useState } from 'react'
 import { ContainerContactsForm, ContainerContactsLabel, ConteinerContactsButton, ConteinerContactsInput } from './CotactsFormStyle';
 import { useDispatch, useSelector } from 'react-redux';
-import { setContacts, setFilter, setModal, setModalData } from 'redax/contactsReduser';
+import { setFilter, setModal, setModalData } from 'redax/contactsReduser';
 import { nanoid } from "nanoid";
+import { contactsSelector } from 'redax/selector';
+import { addContact } from 'redax/operations';
 
 export const ContactsForm = () => {
-	const contacts = useSelector((state) => state.contacts.contacts);
+	const contacts = useSelector(contactsSelector);
 	const dispatch = useDispatch();
 
 	const [name, setName] = useState('');
@@ -35,7 +37,7 @@ export const ContactsForm = () => {
 		};
 
 		onOpenModal(name);
-		dispatch(setContacts(newContact));
+		dispatch(addContact(newContact));
 
 		reset();
 	};

@@ -11,19 +11,22 @@ import { ThemeProvider } from "styled-components";
 import { DarkTheme, LightTheme } from "constants/DarkMode";
 import { useDispatch, useSelector } from "react-redux";
 import { setTheme } from "redax/contactsReduser";
+import { modalDeleteSelector, modalSelector, themesSelector } from 'redax/selector';
+import { fetchContacts } from 'redax/operations';
+import { useEffect } from 'react';
 
 
 export function App() {
 
-
-
-  const modal = useSelector((state) => state.contacts.modal);
-  const modalDelete = useSelector((state) => state.contacts.modalDelete);
-  const themes = useSelector((state) => state.contacts.themes)
+  const modal = useSelector(modalSelector);
+  const modalDelete = useSelector(modalDeleteSelector);
+  const themes = useSelector(themesSelector);
 
   const dispatch = useDispatch();
 
-
+  useEffect(() => {
+    dispatch(fetchContacts());
+  }, [dispatch]);
 
   const changeTheme = () => {
     if (themes === LightTheme) {
