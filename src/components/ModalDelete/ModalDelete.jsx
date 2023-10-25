@@ -13,7 +13,6 @@ export function ModalDelete() {
 
 	const handleDelete = contactId => {
 		dispatch(deleteContact(contactId));
-		console.log(contactId);
 	}
 
 	const onCloseModalDelete = () => {

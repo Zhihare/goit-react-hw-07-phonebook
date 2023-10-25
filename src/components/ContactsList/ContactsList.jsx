@@ -3,10 +3,13 @@ import { RiDeleteBin6Line } from 'react-icons/ri';
 import { ContactsListButton, ContactsListContainer, ContactsListName } from './ContactsListStyle';
 import { useDispatch, useSelector } from "react-redux";
 import { setModalDelete, setModalDeleteData } from 'redax/contactsReduser';
-import { contactsSelector, filterSelector } from 'redax/selector';
+import { contactsSelector, filterSelector, isErrorSelector, isLoadingSelector } from 'redax/selector';
+import Loader from 'components/Loader/Loader';
+import ErrorMessage from 'components/error/Error';
 
 export const ContactsList = () => {
-
+	const error = useSelector(isErrorSelector);
+	const isLoader = useSelector(isLoadingSelector);
 	const contacts = useSelector(contactsSelector);
 	const filter = useSelector(filterSelector);
 
@@ -29,6 +32,8 @@ export const ContactsList = () => {
 
 	return (
 		<ContactsListContainer>
+			{isLoader && <Loader />}
+			{error && <ErrorMessage message={error} />}
 			{filterContacts.map(({ name, number, id }) => {
 				return (
 					<ContactsListName key={id}>

@@ -15,7 +15,6 @@ import { modalDeleteSelector, modalSelector, themesSelector } from 'redax/select
 import { fetchContacts } from 'redax/operations';
 import { useEffect } from 'react';
 
-
 export function App() {
 
   const modal = useSelector(modalSelector);

@@ -5,6 +5,7 @@ import { setFilter, setModal, setModalData } from 'redax/contactsReduser';
 import { nanoid } from "nanoid";
 import { contactsSelector } from 'redax/selector';
 import { addContact } from 'redax/operations';
+import { toast } from 'react-toastify';
 
 export const ContactsForm = () => {
 	const contacts = useSelector(contactsSelector);
@@ -22,11 +23,29 @@ export const ContactsForm = () => {
 	const handleAddContact = (name, number) => {
 
 		if (contacts.some(contact => contact.name === name)) {
-			alert(` A contact has already been created for this name: ${name}`);
+			toast.error(` A contact has already been created for this name: ${name}`, {
+				position: "top-left",
+				autoClose: 3000,
+				hideProgressBar: false,
+				closeOnClick: true,
+				pauseOnHover: true,
+				draggable: true,
+				progress: undefined,
+				theme: "dark",
+			});
 			return;
 		}
 		if (contacts.some(contact => contact.number === number)) {
-			alert(` A contact has already been created for this number: ${number}`);
+			toast.error(` A contact has already been created for this number: ${number}`, {
+				position: "top-left",
+				autoClose: 3000,
+				hideProgressBar: false,
+				closeOnClick: true,
+				pauseOnHover: true,
+				draggable: true,
+				progress: undefined,
+				theme: "dark",
+			});
 			return;
 		}
 
