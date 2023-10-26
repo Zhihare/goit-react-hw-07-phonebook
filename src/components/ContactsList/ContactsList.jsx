@@ -34,10 +34,10 @@ export const ContactsList = () => {
 		<ContactsListContainer>
 			{isLoader && <Loader />}
 			{error && <ErrorMessage message={error} />}
-			{filterContacts.map(({ name, number, id }) => {
+			{filterContacts.map(({ name, number, id, emojis }) => {
 				return (
 					<ContactsListName key={id}>
-						<p>{name}: {number}</p>
+						<p><span>{emojis}</span>{name}: {number}</p>
 						<ContactsListButton onClick={() => onOpenModalDelete(id)}><RiDeleteBin6Line /> </ContactsListButton>
 					</ContactsListName>
 				);
