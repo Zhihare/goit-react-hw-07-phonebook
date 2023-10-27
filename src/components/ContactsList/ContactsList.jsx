@@ -1,5 +1,7 @@
 import React from 'react'
 import { RiDeleteBin6Line } from 'react-icons/ri';
+import { FiEdit } from 'react-icons/fi';
+import { FiPhoneOutgoing } from 'react-icons/fi';
 import { ContactsListButton, ContactsListContainer, ContactsListName } from './ContactsListStyle';
 import { useDispatch, useSelector } from "react-redux";
 import { setModalDelete, setModalDeleteData } from 'redax/contactsReduser';
@@ -38,7 +40,11 @@ export const ContactsList = () => {
 				return (
 					<ContactsListName key={id}>
 						<p><span>{emojis}</span>{name}: {number}</p>
-						<ContactsListButton onClick={() => onOpenModalDelete(id)}><RiDeleteBin6Line /> </ContactsListButton>
+						<div>
+							<a href={"tel:" + number}><ContactsListButton><FiPhoneOutgoing /></ContactsListButton></a>
+							<ContactsListButton><FiEdit /></ContactsListButton>
+							<ContactsListButton onClick={() => onOpenModalDelete(id)}><RiDeleteBin6Line /> </ContactsListButton>
+						</div>
 					</ContactsListName>
 				);
 			})
